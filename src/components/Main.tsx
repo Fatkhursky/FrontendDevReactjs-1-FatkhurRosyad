@@ -219,7 +219,7 @@ function Main({
             <div>
               <div className="w-fit py-7 flex gap-7 flex-wrap justify-center">
                 {restaurants.slice(0, maxRange).map((e, i) => (
-                  <div key={i} className="w-18">
+                  <div key={i} className="w-18 border border-slate-300 p-5">
                     <img className="h-36 w-44" src={e.image} alt="" />
                     <div className="flex justify-between">
                       <p>{e.businessname.split(' ')[0]}</p>
@@ -251,7 +251,7 @@ function Main({
                         setIndex(i);
                         console.log(999, i);
                       }}
-                      className="bg-[#0e7490] shadow-[0_7px_#155e75] active:shadow-none active:relative active:top-[7px]  flex p-1 text-white justify-center cursor-pointer"
+                      className="bg-[#0e7490] rounded-md shadow-[0_7px_#155e75] active:shadow-none active:relative active:top-[7px]  flex p-1 text-white justify-center cursor-pointer"
                     >
                       <p>Learn More</p>
                     </div>
