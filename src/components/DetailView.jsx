@@ -31,7 +31,7 @@ const Detailview = ({ restaurants, setRestaurants, index, setLearnMore}) => {
               architecto aspernatur aut mollitia laudantium totam explicabo
               fugit, commodi dolores doloribus veniam ducimus.
             </p>
-            <a  className='bg-sky-900 px-7 flex justify-center rounded-md text-white' href="/">Back</a>
+            <a  className='bg-[#0e7490] shadow-[0_7px_#155e75] active:shadow-none active:relative active:top-[7px]  px-7 flex justify-center rounded-md text-white' href="/">Back</a>
           </div>
         </div>
       </div>

@@ -29,16 +29,31 @@ function Main({
       const data = await getData();
       let resto = data?.data?.Result;
 
-      //setRestaurants(resto);
-      // if (!open) {
-      //   setRestaurants(resto);
-      // }
-      // if (open) {
-      //   setRestaurants(resto.filter((e) => e.reviews >= 30));
-      // }
       if (!sortPrice) {
-        if (!open) setRestaurants(resto);
-        if (open) setRestaurants(resto.filter((e) => e.reviews >= 30));
+        if (!open) {
+          setRestaurants(resto);
+          if (category === 'canteen') {
+            setRestaurants(resto.filter((e) => e.restauranttype === 'canteen'));
+          }
+          if (category === 'eatery') {
+            setRestaurants(resto.filter((e) => e.restauranttype === 'eatery'));
+          }
+          if (category === 'bukka') {
+            setRestaurants(resto.filter((e) => e.restauranttype === 'bukka'));
+          }
+        }
+        if (open) {
+          setRestaurants(resto.filter((e) => e.reviews >= 30));
+          if (category === 'canteen') {
+            setRestaurants(resto.filter((e) => e.restauranttype === 'canteen'));
+          }
+          if (category === 'eatery') {
+            setRestaurants(resto.filter((e) => e.restauranttype === 'eatery'));
+          }
+          if (category === 'bukka') {
+            setRestaurants(resto.filter((e) => e.restauranttype === 'bukka'));
+          }
+        }
       }
 
       if (sortPrice === 'terendah') {
@@ -52,9 +67,30 @@ function Main({
           return 0;
         }
         const sorted = resto.sort(sortByReviews);
-       // setRestaurants(sorted);
-        if (!open) setRestaurants(sorted);
-        if (open) setRestaurants(sorted.filter((e) => e.reviews >= 30));
+        if (!open) {
+          setRestaurants(sorted);
+          if (category === 'canteen') {
+            setRestaurants(resto.filter((e) => e.restauranttype === 'canteen'));
+          }
+          if (category === 'eatery') {
+            setRestaurants(resto.filter((e) => e.restauranttype === 'eatery'));
+          }
+          if (category === 'bukka') {
+            setRestaurants(resto.filter((e) => e.restauranttype === 'bukka'));
+          }
+        }
+        if (open) {
+          setRestaurants(sorted.filter((e) => e.reviews >= 30));
+          if (category === 'canteen') {
+            setRestaurants(resto.filter((e) => e.restauranttype === 'canteen'));
+          }
+          if (category === 'eatery') {
+            setRestaurants(resto.filter((e) => e.restauranttype === 'eatery'));
+          }
+          if (category === 'bukka') {
+            setRestaurants(resto.filter((e) => e.restauranttype === 'bukka'));
+          }
+        }
       }
 
       if (sortPrice === 'tertinggi') {
@@ -68,17 +104,25 @@ function Main({
           return 0;
         }
         const sorted = resto.sort(sortByReviews);
-       // setRestaurants(sorted);
         if (!open) setRestaurants(sorted);
         if (open) setRestaurants(sorted.filter((e) => e.reviews >= 30));
       }
+
+      // if (category === 'canteen') {
+      //   setRestaurants(resto.filter((e) => e.restauranttype === 'canteen'));
+      // }
+      // if (category === 'eatery') {
+      //   setRestaurants(resto.filter((e) => e.restauranttype === 'eatery'));
+      // }
+      // if (category === 'bukka') {
+      //   setRestaurants(resto.filter((e) => e.restauranttype === 'bukka'));
+      // }
     }
 
     fetchData();
     if (!restaurants) setLoading(true);
     if (restaurants) setLoading(false);
     return () => {
-      
       // fetchData();
     };
   }, [open, restaurants, loading, sortPrice, category]);
@@ -98,6 +142,7 @@ function Main({
         <p>Filter By:</p>
         <div className="flex gap-2 border-b-2 border-slate-400">
           <input
+            className="cursor-pointer"
             type="radio"
             value={open}
             onClick={() => setOpen(!open)}
@@ -112,7 +157,7 @@ function Main({
             id="price"
             value={sortPrice}
             onChange={priceFilter}
-            className="bg-white"
+            className="bg-white cursor-pointer"
           >
             <option value="" hidden>
               Price
@@ -127,7 +172,7 @@ function Main({
             value={category}
             onChange={handleCategory}
             id="kategori"
-            className="bg-white"
+            className="bg-white cursor-pointer"
           >
             <option hidden>Category</option>
             <option value="canteen">canteen</option>
@@ -154,10 +199,10 @@ function Main({
                 {restaurants.slice(0, maxRange).map((e, i) => (
                   <div key={i} className="w-18">
                     <img className="h-36 w-44" src={e.image} alt="" />
-                   <div className='flex justify-between'>
-                   <p>{e.businessname.split(' ')[0]}</p>
-                   <p>{e.restauranttype}</p>
-                   </div>
+                    <div className="flex justify-between">
+                      <p>{e.businessname.split(' ')[0]}</p>
+                      <p>{e.restauranttype}</p>
+                    </div>
                     {e.reviews >= 30 ? svg[1] : svg[0]}
                     <div className="flex justify-between">
                       <div className="flex text-sm gap-1">
@@ -184,7 +229,7 @@ function Main({
                         setIndex(i);
                         console.log(999, i);
                       }}
-                      className="bg-sky-700 flex p-1 text-white justify-center cursor-pointer"
+                      className="bg-[#0e7490] shadow-[0_7px_#155e75] active:shadow-none active:relative active:top-[7px]  flex p-1 text-white justify-center cursor-pointer"
                     >
                       <p>Learn More</p>
                     </div>
