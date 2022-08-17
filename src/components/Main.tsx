@@ -33,25 +33,25 @@ function Main({
         if (!open) {
           setRestaurants(resto);
           if (category === 'canteen') {
-            setRestaurants(resto.filter((e) => e.restauranttype === 'canteen'));
+            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'canteen'));
           }
           if (category === 'eatery') {
-            setRestaurants(resto.filter((e) => e.restauranttype === 'eatery'));
+            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'eatery'));
           }
           if (category === 'bukka') {
-            setRestaurants(resto.filter((e) => e.restauranttype === 'bukka'));
+            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'bukka'));
           }
         }
         if (open) {
           setRestaurants(resto.filter((e) => e.reviews >= 30));
           if (category === 'canteen') {
-            setRestaurants(resto.filter((e) => e.restauranttype === 'canteen'));
+            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'canteen'));
           }
           if (category === 'eatery') {
-            setRestaurants(resto.filter((e) => e.restauranttype === 'eatery'));
+            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'eatery'));
           }
           if (category === 'bukka') {
-            setRestaurants(resto.filter((e) => e.restauranttype === 'bukka'));
+            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'bukka'));
           }
         }
       }
@@ -70,25 +70,25 @@ function Main({
         if (!open) {
           setRestaurants(sorted);
           if (category === 'canteen') {
-            setRestaurants(resto.filter((e) => e.restauranttype === 'canteen'));
+            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'canteen'));
           }
           if (category === 'eatery') {
-            setRestaurants(resto.filter((e) => e.restauranttype === 'eatery'));
+            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'eatery'));
           }
           if (category === 'bukka') {
-            setRestaurants(resto.filter((e) => e.restauranttype === 'bukka'));
+            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'bukka'));
           }
         }
         if (open) {
           setRestaurants(sorted.filter((e) => e.reviews >= 30));
           if (category === 'canteen') {
-            setRestaurants(resto.filter((e) => e.restauranttype === 'canteen'));
+            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'canteen'));
           }
           if (category === 'eatery') {
-            setRestaurants(resto.filter((e) => e.restauranttype === 'eatery'));
+            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'eatery'));
           }
           if (category === 'bukka') {
-            setRestaurants(resto.filter((e) => e.restauranttype === 'bukka'));
+            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'bukka'));
           }
         }
       }
@@ -104,8 +104,30 @@ function Main({
           return 0;
         }
         const sorted = resto.sort(sortByReviews);
-        if (!open) setRestaurants(sorted);
-        if (open) setRestaurants(sorted.filter((e) => e.reviews >= 30));
+        if (!open) {
+          setRestaurants(sorted);
+          if (category === 'canteen') {
+            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'canteen'));
+          }
+          if (category === 'eatery') {
+            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'eatery'));
+          }
+          if (category === 'bukka') {
+            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'bukka'));
+          }
+        }
+        if (open) {
+          setRestaurants(sorted.filter((e) => e.reviews >= 30));
+          if (category === 'canteen') {
+            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'canteen'));
+          }
+          if (category === 'eatery') {
+            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'eatery'));
+          }
+          if (category === 'bukka') {
+            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'bukka'));
+          }
+        }
       }
 
       // if (category === 'canteen') {
