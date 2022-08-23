@@ -24,130 +24,120 @@ function Main({
   const [category, setCategory] = useState();
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    async function fetchData() {
-      const data = await getData();
-      let resto = data?.data?.Result;
+  async function fetchData() {
+    const data = await getData();
+    let resto = data?.data?.Result;
 
-      if (!sortPrice) {
-        if (!open) {
-          setRestaurants(resto);
-          if (category === 'canteen') {
-            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'canteen'));
-          }
-          if (category === 'eatery') {
-            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'eatery'));
-          }
-          if (category === 'bukka') {
-            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'bukka'));
-          }
+    if (!sortPrice) {
+      if (!open) {
+        setRestaurants(resto);
+        if (category === 'canteen') {
+          setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'canteen'));
         }
-        if (open) {
-          setRestaurants(resto.filter((e) => e.reviews >= 30));
-          if (category === 'canteen') {
-            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'canteen'));
-          }
-          if (category === 'eatery') {
-            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'eatery'));
-          }
-          if (category === 'bukka') {
-            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'bukka'));
-          }
+        if (category === 'eatery') {
+          setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'eatery'));
+        }
+        if (category === 'bukka') {
+          setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'bukka'));
         }
       }
-
-      if (sortPrice === 'terendah') {
-        function sortByReviews(a, b) {
-          if (a.reviews < b.reviews) {
-            return -1;
-          }
-          if (a.reviews > b.reviews) {
-            return 1;
-          }
-          return 0;
+      if (open) {
+        setRestaurants(resto.filter((e) => e.reviews >= 30));
+        if (category === 'canteen') {
+          setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'canteen'));
         }
-        const sorted = resto.sort(sortByReviews);
-        if (!open) {
-          setRestaurants(sorted);
-          if (category === 'canteen') {
-            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'canteen'));
-          }
-          if (category === 'eatery') {
-            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'eatery'));
-          }
-          if (category === 'bukka') {
-            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'bukka'));
-          }
+        if (category === 'eatery') {
+          setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'eatery'));
         }
-        if (open) {
-          setRestaurants(sorted.filter((e) => e.reviews >= 30));
-          if (category === 'canteen') {
-            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'canteen'));
-          }
-          if (category === 'eatery') {
-            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'eatery'));
-          }
-          if (category === 'bukka') {
-            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'bukka'));
-          }
+        if (category === 'bukka') {
+          setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'bukka'));
         }
       }
-
-      if (sortPrice === 'tertinggi') {
-        function sortByReviews(a, b) {
-          if (a.reviews < b.reviews) {
-            return 1;
-          }
-          if (a.reviews > b.reviews) {
-            return -1;
-          }
-          return 0;
-        }
-        const sorted = resto.sort(sortByReviews);
-        if (!open) {
-          setRestaurants(sorted);
-          if (category === 'canteen') {
-            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'canteen'));
-          }
-          if (category === 'eatery') {
-            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'eatery'));
-          }
-          if (category === 'bukka') {
-            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'bukka'));
-          }
-        }
-        if (open) {
-          setRestaurants(sorted.filter((e) => e.reviews >= 30));
-          if (category === 'canteen') {
-            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'canteen'));
-          }
-          if (category === 'eatery') {
-            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'eatery'));
-          }
-          if (category === 'bukka') {
-            setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'bukka'));
-          }
-        }
-      }
-
-      // if (category === 'canteen') {
-      //   setRestaurants(resto.filter((e) => e.restauranttype === 'canteen'));
-      // }
-      // if (category === 'eatery') {
-      //   setRestaurants(resto.filter((e) => e.restauranttype === 'eatery'));
-      // }
-      // if (category === 'bukka') {
-      //   setRestaurants(resto.filter((e) => e.restauranttype === 'bukka'));
-      // }
     }
 
+    if (sortPrice === 'terendah') {
+      function sortByReviews(a, b) {
+        if (a.reviews < b.reviews) {
+          return -1;
+        }
+        if (a.reviews > b.reviews) {
+          return 1;
+        }
+        return 0;
+      }
+      const sorted = resto.sort(sortByReviews);
+      if (!open) {
+        setRestaurants(sorted);
+        if (category === 'canteen') {
+          setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'canteen'));
+        }
+        if (category === 'eatery') {
+          setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'eatery'));
+        }
+        if (category === 'bukka') {
+          setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'bukka'));
+        }
+      }
+      if (open) {
+        setRestaurants(sorted.filter((e) => e.reviews >= 30));
+        if (category === 'canteen') {
+          setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'canteen'));
+        }
+        if (category === 'eatery') {
+          setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'eatery'));
+        }
+        if (category === 'bukka') {
+          setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'bukka'));
+        }
+      }
+    }
+
+    if (sortPrice === 'tertinggi') {
+      function sortByReviews(a, b) {
+        if (a.reviews < b.reviews) {
+          return 1;
+        }
+        if (a.reviews > b.reviews) {
+          return -1;
+        }
+        return 0;
+      }
+      const sorted = resto.sort(sortByReviews);
+      if (!open) {
+        setRestaurants(sorted);
+        if (category === 'canteen') {
+          setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'canteen'));
+        }
+        if (category === 'eatery') {
+          setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'eatery'));
+        }
+        if (category === 'bukka') {
+          setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'bukka'));
+        }
+      }
+      if (open) {
+        setRestaurants(sorted.filter((e) => e.reviews >= 30));
+        if (category === 'canteen') {
+          setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'canteen'));
+        }
+        if (category === 'eatery') {
+          setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'eatery'));
+        }
+        if (category === 'bukka') {
+          setRestaurants((prev) => prev.filter((e) => e.restauranttype === 'bukka'));
+        }
+      }
+    }
+  }
+  
+  useEffect(() => {
     fetchData();
+  },[open, sortPrice, category]);
+
+  useEffect(() => {
     if (!restaurants) setLoading(true);
     if (restaurants) setLoading(false);
-    return () => {
-      // fetchData();
-    };
-  }, [open, restaurants, loading, sortPrice, category]);
+  }, [restaurants])
 
   function priceFilter(e) {
     setSortPrice(e.target.value);

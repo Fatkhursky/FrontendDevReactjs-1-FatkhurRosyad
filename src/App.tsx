@@ -7,13 +7,6 @@ function App() {
   const [restaurants, setRestaurants] = useState();
   const [learnMore, setLearnMore] = useState(false);
   const [index, setIndex] = useState();
-  // useEffect(() => {
-  //   if (learnMore)
-
-  //   return () => {
-  //     // second
-  //   }
-  // }, [learnMore])
 
   return (
     <div className="p-12">
